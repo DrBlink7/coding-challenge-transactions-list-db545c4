@@ -1,20 +1,21 @@
-import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
+/* eslint-disable max-len */
+import { type FC, useCallback } from 'react'
+import { useDispatch } from 'react-redux'
+import { useForm } from 'react-hook-form'
 
-import { Actions } from "../types";
+import { Actions } from '../types'
 
-const SendTransaction: React.FC = () => {
-  const dispatch = useDispatch();
-  const { handleSubmit } = useForm();
+const SendTransaction: FC = () => {
+  const dispatch = useDispatch()
+  const { handleSubmit } = useForm()
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any): void => { console.log(data) }
 
   const handleDispatch = useCallback(() => {
     dispatch({
-      type: Actions.SendTransaction,
-    });
-  }, [dispatch]);
+      type: Actions.SendTransaction
+    })
+  }, [dispatch])
 
   return (
     <>
@@ -25,6 +26,7 @@ const SendTransaction: React.FC = () => {
       >
         Send
       </button>
+      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div
           id="hs-basic-modal"
@@ -122,7 +124,7 @@ const SendTransaction: React.FC = () => {
         </div>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default SendTransaction;
+export default SendTransaction

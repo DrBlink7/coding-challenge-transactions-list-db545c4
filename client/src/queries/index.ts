@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const GetAllTransactions = gql`
   query GetAllTransactions {
@@ -14,7 +14,7 @@ export const GetAllTransactions = gql`
       receipt
     }
   }
-`;
+`
 
 export const GetSingleTransaction = gql`
   query GetSingleTransaction($hash: String!) {
@@ -29,7 +29,7 @@ export const GetSingleTransaction = gql`
       hash
     }
   }
-`;
+`
 
 export const SaveTransaction = gql`
   mutation SaveTransaction($transaction: TransactionInput!) {
@@ -37,4 +37,4 @@ export const SaveTransaction = gql`
       hash
     }
   }
-`;
+`

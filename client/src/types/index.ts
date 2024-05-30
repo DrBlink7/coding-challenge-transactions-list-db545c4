@@ -1,34 +1,33 @@
 declare global {
   interface Window {
-    web3: any;
+    web3: any
   }
 }
 
 export interface Transaction {
-  gasLimit: string;
-  gasPrice: string;
-  to: string;
-  from: string;
-  value: string;
-  data?: string;
-  chainId: string;
-  hash: string;
+  gasLimit: string
+  gasPrice: string
+  to: string
+  from: string
+  value: string
+  data?: string
+  chainId: string
+  hash: string
 }
 
 export interface TransactionsData {
-  getAllTransactions: Transaction[];
+  getAllTransactions: Transaction[]
 }
 
 export interface SingleTransactionData {
-  getTransaction: Transaction;
+  getTransaction: Transaction
 }
 
-export type Action<P> = {
-  type: Actions;
-  payload: P;
-};
+export interface Action<P> {
+  type: Actions
+  payload: P
+}
 
 export enum Actions {
-  SendTransaction = "SEND_TRANSACTION",
+  SendTransaction = 'SEND_TRANSACTION',
 }
-

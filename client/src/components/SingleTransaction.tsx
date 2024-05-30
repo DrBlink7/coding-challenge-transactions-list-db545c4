@@ -1,20 +1,21 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
-import { GetSingleTransaction } from "../queries";
-import { SingleTransactionData } from "../types";
-import { navigate } from "./NaiveRouter";
+/* eslint-disable max-len */
+import { type FC, useCallback } from 'react'
+import { useQuery } from '@apollo/client'
+import { GetSingleTransaction } from '../queries'
+import { type SingleTransactionData } from '../types'
+import { navigate } from './NaiveRouter'
 
 interface SingleTransactionProps {
-  id: string | null;
+  id: string | null
 }
 
-const SingleTransaction: React.FC<SingleTransactionProps> = ({ id }) => {
-  const handleGoBack = () => navigate(`/transactions`);
+const SingleTransaction: FC<SingleTransactionProps> = ({ id }) => {
+  const handleGoBack = useCallback(() => { navigate('/transactions') }, [])
 
   const { loading, error, data } = useQuery<SingleTransactionData>(
     GetSingleTransaction,
-    { variables: { hash: id } },
-  );
+    { variables: { hash: id } }
+  )
 
   if (loading) {
     return (
@@ -23,20 +24,20 @@ const SingleTransaction: React.FC<SingleTransactionProps> = ({ id }) => {
           Loading...
         </div>
       </div>
-    );
+    )
   }
 
-  if (error) {
+  if (error != null) {
     return (
       <div className="flex flex-col mt-20">
         <div className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between text-red-600 font-bold">
           Error: {error.message}
         </div>
       </div>
-    );
+    )
   }
 
-  const { hash, to, from, value } = data?.getTransaction || {};
+  const { hash, to, from, value } = getData(data)
 
   return (
     <div>
@@ -71,7 +72,23 @@ const SingleTransaction: React.FC<SingleTransactionProps> = ({ id }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SingleTransaction;
+export default SingleTransaction
+
+interface Data { hash: string, to: string, from: string, value: string }
+
+const getData = (data: SingleTransactionData | undefined): Data => {
+  const emptyData = {
+    hash: '',
+    to: '',
+    from: '',
+    value: ''
+  } satisfies Data
+
+  if (data == null) return emptyData
+
+  const { hash, to, from, value } = data.getTransaction
+  return { hash, to, from, value }
+}

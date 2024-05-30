@@ -1,19 +1,19 @@
 // Define the state type
 export interface RootState {
-  transactions: any[];
+  transactions: any[]
 }
 
 // Initial state
 const initialState: RootState = {
-  transactions: [],
-};
+  transactions: []
+}
 
 const reducer = (state = initialState, action: any): RootState => {
   switch (action.type) {
     // Define your actions
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reducer;
+export default reducer

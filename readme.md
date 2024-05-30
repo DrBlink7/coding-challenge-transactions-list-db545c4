@@ -52,7 +52,7 @@ To successfully set up and run this challenge, you'll need the following install
 - Changes to the client will automatically reflect in your client *(hot reloading)*.
 - Initial database values can be created via the UI *(after you’ve fixed no# 2. and 3.)* or by using the **`generateTransactions`** script, found in the `scripts` folder of the client.
 - If you need it, manually clean up the `mongo` container between stack restarts to avoid stale data.
-- Use the Metamask browser extension and connect it to the localhost Ganache network. This is important, otherwise you’re transactions will not make it to your local development chain.
+- Use the Metamask browser extension and connect it to the localhost Ganache network. This is important, otherwise your transactions will not make it to your local development chain.
 - Wallet address and private key will be listed in the console when initializing the stack, make a note of them, as you’ll need them either to use directly, or as recipients.
 - Since everything is containerized, you won't actually have node modules installed locally, meaning you're editor might complain about "missing" imports. Feel free to install them locally if that aids you in your work _(in `/client` and `/server` respectively)_.
 
