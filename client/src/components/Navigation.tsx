@@ -2,9 +2,10 @@
 import { type FC, useCallback, useState } from 'react'
 import Onboard, { type WalletState } from '@web3-onboard/core'
 import SendTransaction from './SendTransaction'
-
+import injectedModule from '@web3-onboard/injected-wallets'
+// !@ISSUE: 2. Wallet Connection -> https://onboard.blocknative.com/
 const onboard = Onboard({
-  wallets: [],
+  wallets: [(injectedModule())],
   chains: [
     {
       id: '123456',
@@ -22,11 +23,7 @@ const Navigation: FC = () => {
     const wallets = await onboard.connectWallet()
 
     const [metamaskWallet] = wallets
-
-    if (
-      metamaskWallet.label === 'MetaMask' &&
-      (Boolean(metamaskWallet.accounts[0].address))
-    ) {
+    if (metamaskWallet !== undefined && Boolean(metamaskWallet.accounts[0].address) && metamaskWallet.label === 'MetaMask') {
       setWallet(metamaskWallet)
     }
   }, [])
