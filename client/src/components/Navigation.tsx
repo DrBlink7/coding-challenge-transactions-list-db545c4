@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
-import React, { useCallback, useState } from 'react'
+import { type FC, useCallback, useState } from 'react'
 import Onboard, { type WalletState } from '@web3-onboard/core'
-
 import SendTransaction from './SendTransaction'
 
 const onboard = Onboard({
@@ -16,7 +15,7 @@ const onboard = Onboard({
   ]
 })
 
-const Navigation: React.FC = () => {
+const Navigation: FC = () => {
   const [wallet, setWallet] = useState<WalletState>()
 
   const handleConnect = useCallback(async () => {
